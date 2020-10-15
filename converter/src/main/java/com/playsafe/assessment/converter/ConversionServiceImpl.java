@@ -13,4 +13,9 @@ public class ConversionServiceImpl implements ConversionService {
     public BigDecimal ConvertKelvinToCelsius(BigDecimal kelvin) {
         return kelvin.subtract(KELVIN_CELSIUS_DIFF).setScale(2, BigDecimal.ROUND_HALF_UP);
     }
+
+    @Override
+    public BigDecimal convertCelsiusToKelvin(BigDecimal celsius) {
+        return celsius.add(KELVIN_CELSIUS_DIFF).setScale(2, BigDecimal.ROUND_HALF_UP);
+    }
 }

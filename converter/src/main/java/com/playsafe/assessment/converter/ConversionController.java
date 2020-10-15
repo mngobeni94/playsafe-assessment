@@ -23,8 +23,14 @@ public class ConversionController {
 
     @GetMapping("ktoc/{kelvin}")
     @LogMethodExecutionTime
-    public ResponseEntity<BigDecimal> ConvertKelvinToCelsius(@PathVariable("kelvin") BigDecimal kelvin) {
+    public ResponseEntity<BigDecimal> convertKelvinToCelsius(@PathVariable("kelvin") BigDecimal kelvin) {
         return ResponseEntity.ok(conversionService.ConvertKelvinToCelsius(kelvin));
+    }
+
+    @GetMapping("ctok/{celsius}")
+    @LogMethodExecutionTime
+    public ResponseEntity<BigDecimal> convertCelsiusToKelvin(@PathVariable("celsius") BigDecimal celsius) {
+        return ResponseEntity.ok(conversionService.convertCelsiusToKelvin(celsius));
     }
 
 }
