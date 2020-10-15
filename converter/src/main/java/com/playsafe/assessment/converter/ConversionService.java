@@ -6,4 +6,8 @@ public interface ConversionService {
     BigDecimal ConvertKelvinToCelsius(BigDecimal kelvin);
 
     BigDecimal convertCelsiusToKelvin(BigDecimal celsius);
+
+    BigDecimal convertMilesToKilometers(BigDecimal miles);
+
+    BigDecimal convertKilometersToMiles(BigDecimal kilometers);
 }

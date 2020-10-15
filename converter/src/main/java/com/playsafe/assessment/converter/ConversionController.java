@@ -33,4 +33,15 @@ public class ConversionController {
         return ResponseEntity.ok(conversionService.convertCelsiusToKelvin(celsius));
     }
 
+    @GetMapping("mtok/{miles}")
+    @LogMethodExecutionTime
+    public ResponseEntity<BigDecimal> convertMilesToKilometers(@PathVariable("miles") BigDecimal miles) {
+        return ResponseEntity.ok(conversionService.convertMilesToKilometers(miles));
+    }
+
+    @GetMapping("ktom/{kilometers}")
+    @LogMethodExecutionTime
+    public ResponseEntity<BigDecimal> convertKilometersToMiles(@PathVariable("kilometers") BigDecimal kilometers) {
+        return ResponseEntity.ok(conversionService.convertKilometersToMiles(kilometers));
+    }
 }
