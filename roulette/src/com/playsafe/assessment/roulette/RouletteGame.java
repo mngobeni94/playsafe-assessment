@@ -16,6 +16,7 @@ public class RouletteGame {
     private void play() {
         File file = new File("src/input1.txt");
         Random random = new Random();
+
         int number = random.nextInt(36) + 1;
         try (BufferedReader br = new BufferedReader(new FileReader(file));
              Scanner scanner = new Scanner(System.in)) {
@@ -41,6 +42,7 @@ public class RouletteGame {
 
     private void showResults(Map<String, List<String>> betsMap, int number) {
         System.out.println("Number: " + number);
+        System.out.println("Player \t\tBet\t\tOutcome\t\tWinnings");
         betsMap.forEach((name, bets) -> {
             System.out.println(name);
             bets.forEach(betLine -> {
@@ -48,13 +50,27 @@ public class RouletteGame {
                 String bet = st.nextToken();
                 BigDecimal amount = new BigDecimal(st.nextToken());
                 getAmountWon(number, bet, amount);
-                BigDecimal amountWon = getAmountWon(4, bet, amount);
-                
+                BigDecimal amountWon = getAmountWon(number, bet, amount);
+                String outcome = amountWon.doubleValue() > 0 ? "WIN" : "LOSE";
+                System.out.println("\t\t\t" + bet + "\t\t" + outcome + "\t\t" + amountWon.doubleValue());
             });
         });
     }
 
     private BigDecimal getAmountWon(int number, String bet, BigDecimal amount) {
+        switch (bet) {
+            case "EVEN":
+                if (number % 2 == 0)
+                    return new BigDecimal(amount.doubleValue() * 2);
+                break;
+            case "ODD":
+                if (number % 2 != 0)
+                    return new BigDecimal(amount.doubleValue() * 2);
+                break;
+            default:
+                if(Integer.parseInt(bet) == number)
+                    return new BigDecimal(amount.doubleValue() * 36);
+        }
         return BigDecimal.ZERO;
     }
 }
